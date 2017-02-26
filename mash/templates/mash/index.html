@@ -1,0 +1,39 @@
+{%  extends 'mash/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>SavageMash</title>
+  </head>
+
+<body>
+{%  block content %}
+
+    <div id="main">
+	<h3>Were we let in for our savageness? No. Will we be judged on it? Yes.</h3>
+	<h2>Who's more savage? Click to Choose.</h2>
+
+    <table>
+    <tr>
+    <form method="post">
+       {% csrf_token %}
+        <td><input name="name", type="image" value="{{ people.0.name }}" src="media/{{ people.0.image }}" height="500" width="500">
+        <h1>{{ people.0.name }}</h1>
+        </td>
+
+        <td><h3>OR</h3></td>
+
+        <td><input name="name", type="image" value="{{ people.1.name }}" src="media/{{ people.1.image }}" height="500" width="500">
+        <h1>{{ people.1.name }}</h1>
+        </td>
+        <input type="hidden" name="person1" value="{{ people.0.name }}">
+        <input type="hidden" name="person2" value="{{ people.1.name }}">
+        <input type="hidden" name="id1" value="{{ people.0.pk }}">
+        <input type="hidden" name="id2" value="{{ people.1.pk }}">
+    </form>
+    </tr>
+    </table>
+    </div>
+
+{% endblock %}
+</body>
